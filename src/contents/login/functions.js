@@ -1,0 +1,59 @@
+import { urlBase } from "@/functions/urlBase"
+import { setCookie } from "@/functions/setCookie"
+import { jwtDecode } from "jwt-decode"
+
+export async function handleLogin(e, email, password, setMessage, router) {
+
+  // Limpando o evento padrão do formulário
+  e.preventDefault()
+
+  // Verificando se o email está vazio
+  if (email.trim() == '') {
+    return setMessage('Preencha seu email.')
+  }
+
+  // Verificando se a senha está vazia
+  if (password.trim() == '') {
+    return setMessage('Preencha sua senha.')
+  }
+
+  // Fazendo a requisição de login
+  const api = await fetch(`${urlBase}user/login`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: email.trim(),
+      password: password.trim()
+    })
+  })
+
+  // Capturando a resposta da api
+  const { data, error } = await api.json()
+
+  // Verificando se deu algum erro
+  if (error) {
+    return setMessage(error.message)
+  }
+
+  // Verificando se deu certo
+  if (data) {
+
+    // Capturando os dados do usuário
+    const { token } = data.user
+
+    if (jwtDecode(token).role == 'ADMIN') {
+
+      // Configurando o cookie
+      setCookie('token', token, 1)
+
+      // Redirecionando o usuário
+      return router.push('/users')
+
+    }else{
+      return setMessage('Somente administradores tem acesso ao sistema.')
+    }
+  }
+}
