@@ -23,9 +23,7 @@ export async function getServerSideProps(context) {
       props: {
         name: data.data.data.user.name, 
         email: data.data.data.user.email, 
-        wiinpayApiKey: data.data.data.user.wiinpayApiKey, 
-        pixelAccess: data.data.data.user.pixelAccess, 
-        pixelId: data.data.data.user.pixelId
+        wiinpayApiKey: data.data.data.user.wiinpayApiKey
       }
     }
   } catch (e) {
@@ -34,8 +32,6 @@ export async function getServerSideProps(context) {
         name: '',
         email: '',
         wiinpayApiKey: '',
-        pixelAccess: '',
-        pixelId: ''
       }
     }
   }

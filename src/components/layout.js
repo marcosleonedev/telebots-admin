@@ -18,7 +18,6 @@ export function Layout({ page, children, titulo, className }) {
         { titulo: 'Meus bots', icone: <Bot className="h-4 w-4" />, url: '/bots' },
         { titulo: 'Meus fluxos', icone: <Waypoints className="h-4 w-4" />, url: '/flows' },
         { titulo: 'Minha conta', icone: <UserCircle className="h-4 w-4" />, url: '/account' },
-        { titulo: 'Suporte', icone: <Headset className="h-4 w-4" />, url: 'https://api.whatsapp.com/send?phone=5561981434176' },
         { titulo: 'Sair', icone: <LogOut className="h-4 w-4" /> }
     ]
 

@@ -6,10 +6,9 @@ import { useState } from "react"
 import { handleUserEdit } from "@/functions/handleUserEdit"
 import { Separator } from "@/components/ui/separator"
 
-export function AccountContent({ name, email, wiinpayApiKey, pixelAccess, pixelId }) {
+export function AccountContent({ name, email, wiinpayApiKey, pixelId }) {
 
   const [newWiinpayApiKey, setNewWiinpayApiKey] = useState(wiinpayApiKey)
-  const [newPixelId, setNewPixelId] = useState(pixelId)
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmNewPassword, setConfirmNewPassword] = useState('')
@@ -17,7 +16,7 @@ export function AccountContent({ name, email, wiinpayApiKey, pixelAccess, pixelI
 
   return (
     <Layout page={'Minha conta'} titulo={'Minha conta'}>
-      <form className="max-w- flex flex-col overflow-y-auto h-full" onSubmit={(e) => handleUserEdit(e, newWiinpayApiKey, newPixelId, password, newPassword, confirmNewPassword, setMessage)}>
+      <form className="max-w- flex flex-col overflow-y-auto h-full" onSubmit={(e) => handleUserEdit(e, newWiinpayApiKey, password, newPassword, confirmNewPassword, setMessage)}>
 
         <h2 className="font-semibold text-lg text-primary">Minha conta 😃</h2>
         <p className="font-medium text-sm text-foreground mt-1">Veja e altere suas informações pessoais quando for necessário.</p>

@@ -155,7 +155,7 @@ export async function handleUserDelete(id, setMessage, setUsers) {
 
 }
 
-export async function handleUserEdit(id, pixelAccess, setMessage, setUsers) {
+export async function handleUserEdit(id, fee, percentage, setMessage, setUsers) {
 
   // Limpando o evento padrão do formulário
   const authorization = handleGetAuthorization()
@@ -164,11 +164,6 @@ export async function handleUserEdit(id, pixelAccess, setMessage, setUsers) {
   if (id.trim() == '') {
     return setMessage('Preencha o ID do usuário.')
   }
-
-  // Verificando se o campo de senha está vazio
-  if (pixelAccess !== true && pixelAccess != false && pixelAccess != 'false' && pixelAccess != 'true') {
-    return setMessage('Preencha se o usuário pode ter acesso ao pixel ou não.')
-}
 
   // Fazendo a requisição de login
   const api = await fetch(`${urlBase}user/edit-admin/${id}`, {
@@ -179,7 +174,8 @@ export async function handleUserEdit(id, pixelAccess, setMessage, setUsers) {
       'authorization': authorization
     },
     body: JSON.stringify({
-      pixelAccess: pixelAccess
+      fee: fee,
+      percentage: percentage
     })
   })
 

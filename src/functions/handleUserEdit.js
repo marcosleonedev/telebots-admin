@@ -1,7 +1,7 @@
 import { urlBase } from "./urlBase"
 import { handleGetAuthorization } from "./handleGetAuthorization"
 
-export async function handleUserEdit(e, wiinpayApiKey, pixelId, password, newPassword, confirmNewPassword, setMessage) {
+export async function handleUserEdit(e, wiinpayApiKey, password, newPassword, confirmNewPassword, setMessage) {
 
   // Limpando o evento padrão do formulário
   e.preventDefault()
@@ -41,7 +41,6 @@ export async function handleUserEdit(e, wiinpayApiKey, pixelId, password, newPas
     },
     body: JSON.stringify({
       wiinpayApiKey: wiinpayApiKey.trim(),
-      pixelId: pixelId.trim(),
       password: password.trim(),
       newPassword: newPassword.trim(),
       confirmNewPassword: confirmNewPassword.trim(),
